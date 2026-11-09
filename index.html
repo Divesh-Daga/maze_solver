@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pathfinding Visualizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">ALGORITHM VISUALIZER</p>
+      <h1>Pathfinding Visualizer</h1>
+      <p class="subtitle">Compare BFS, Dijkstra and A* on the same grid.</p>
+    </div>
+
+    <div class="header-stats">
+      <div><span id="statusText">Ready</span><small>Status</small></div>
+      <div><span id="visitedCount">0</span><small>Visited</small></div>
+      <div><span id="pathCount">0</span><small>Path</small></div>
+    </div>
+  </header>
+
+  <main class="app">
+    <aside class="sidebar">
+      <section class="panel">
+        <h2>Algorithm</h2>
+        <select id="algorithmSelect">
+          <option value="bfs">Breadth-First Search</option>
+          <option value="dijkstra">Dijkstra</option>
+          <option value="astar">A*</option>
+        </select>
+
+        <div class="algorithm-info" id="algorithmInfo">
+          <strong>BFS</strong>
+          <p>Explores level by level. It guarantees the shortest path when every move has equal cost.</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Grid tools</h2>
+
+        <label class="tool-label">Draw mode</label>
+        <div class="segmented">
+          <button class="tool active" data-mode="wall">Wall</button>
+          <button class="tool" data-mode="weight">Weight</button>
+          <button class="tool" data-mode="erase">Erase</button>
+        </div>
+
+        <button class="primary" id="startBtn">▶ Visualize</button>
+        <button id="mazeBtn">Generate Maze</button>
+        <button id="clearBtn">Clear Board</button>
+        <button id="resetBtn">Reset</button>
+      </section>
+
+      <section class="panel">
+        <h2>Speed</h2>
+        <input id="speedSlider" type="range" min="1" max="100" value="70">
+        <div class="range-row">
+          <span>Slow</span>
+          <span id="speedValue">70%</span>
+          <span>Fast</span>
+        </div>
+      </section>
+
+      <section class="panel legend">
+        <h2>Legend</h2>
+        <div><i class="legend-cell start"></i> Start</div>
+        <div><i class="legend-cell end"></i> Destination</div>
+        <div><i class="legend-cell wall"></i> Wall</div>
+        <div><i class="legend-cell visited"></i> Visited</div>
+        <div><i class="legend-cell path"></i> Shortest path</div>
+        <div><i class="legend-cell weight">5</i> Weighted cell</div>
+      </section>
+
+      <section class="panel tips">
+        <h2>How to use</h2>
+        <p>Drag on the grid to draw walls. Switch to Weight mode to add traversal cost. Then choose an algorithm and visualize it.</p>
+        <p class="muted">BFS ignores weights. Dijkstra and A* use them.</p>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <div class="board-header">
+        <div>
+          <span class="badge" id="algorithmBadge">BFS</span>
+          <span id="gridHint">20 × 32 grid</span>
+        </div>
+        <div class="message" id="message">Draw walls and choose an algorithm.</div>
+      </div>
+
+      <div class="grid-wrap">
+        <div id="grid" class="grid" aria-label="Pathfinding grid"></div>
+      </div>
+
+      <div class="bottom-stats">
+        <div><span id="costValue">—</span><small>Path cost</small></div>
+        <div><span id="timeValue">—</span><small>Search time</small></div>
+        <div><span id="algorithmValue">BFS</span><small>Algorithm</small></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Built with HTML, CSS and JavaScript · BFS · Dijkstra · A*
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
